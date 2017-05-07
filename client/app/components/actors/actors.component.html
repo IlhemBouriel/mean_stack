@@ -1,0 +1,62 @@
+<h1>Actor Section</h1>
+<form class="well" (submit)="addActor($event)">
+    <div class="form-group">
+        <input type="text" class="form-control" name="name" [(ngModel)]="name" placeholder="Actor name" autocomplete="false">
+        <input type="text" class="form-control" name="birth_year" [(ngModel)]="birth_year" placeholder="Actor birth year" autocomplete="false">
+    </div>
+    <input type="submit" value="Add" class="btn btn-default">
+</form>
+    <div class="actor-list">
+        <div *ngFor="let actor of actors">
+        <div class="col-md-2">
+             {{actor.name}}
+    
+        </div>
+        <div class="col-md-2">
+            {{actor.birth_year}}
+        </div>
+       
+        <div class="col-md-2">
+<a href="#open-modal{{actor.id}}-actor" class="btn btn-success">About movies</a>
+
+        </div>
+      <!--  <div class="col-md-6">
+            <div *ngIf="actor.movies.length != 0">
+                <div *ngFor="let movie of actor.movies">
+                    <div *ngFor="let m of movies">
+                            <p *ngIf="m._id == movie">
+                                   {{ m.title }}
+                            </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    -->
+    
+        <div class="col-md-2">
+            <input type="button" value="Delete" class="btn btn-danger" (click)="DeleteActor(actor.id)">
+        </div>
+        <br><br>
+        </div>
+    </div>
+
+
+<div *ngFor="let actor of actors">
+<div id="open-modal{{actor.id}}-actor" class="modal-window">
+  <div style="height: 60%;">
+    <a href="#modal-close" title="Close" class="modal-close">close &times;</a>
+    <h1>{{actor.name}}</h1>
+    <div> 
+        <div class="col-md-6">
+
+
+
+<div *ngFor="let m of movies">
+      <input type="checkbox" [checked]="onSearch(m,actor)" (click)="updateMovieStatus(actor,m,onSearch(m,actor))">{{m.title}}
+</div>
+           
+        </div>
+        </div>
+  </div>
+</div>
+</div>

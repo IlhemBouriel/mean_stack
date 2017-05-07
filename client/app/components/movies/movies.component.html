@@ -1,0 +1,52 @@
+<h1>Actor Section</h1>
+<form class="well" (submit)="addMovie($event)">
+    <div class="form-group">
+        <input type="text" class="form-control" name="title" [(ngModel)]="title" placeholder="Movie title" autocomplete="false">
+        <input type="text" class="form-control" name="year" [(ngModel)]="year" placeholder="Movie year" autocomplete="false">
+    </div>
+    <input type="submit" value="Add" class="btn btn-default">
+</form>
+    <div class="movie-list">
+        <div *ngFor="let movie of movies">
+        <div class="col-md-2">
+             {{movie.title}}
+    
+        </div>
+        <div class="col-md-2">
+            {{movie.year}}
+        </div>
+       
+        <div class="col-md-2">
+<a href="#open-modal{{movie.id}}-movie" class="btn btn-success">About actors</a>
+
+        </div>
+
+
+    
+        <div class="col-md-2">
+            <input type="button" value="Delete" class="btn btn-danger" (click)="DeleteMovie(movie.id)">
+        </div>
+        <br><br>
+        </div>
+    </div>
+
+
+<div *ngFor="let movie of movies">
+<div id="open-modal{{movie.id}}-movie" class="modal-window">
+  <div style="height: 60%;">
+    <a href="#modal-close" title="Close" class="modal-close">close &times;</a>
+    <h1>{{movie.title}}</h1>
+    <div> 
+        <div class="col-md-6">
+
+
+
+<div *ngFor="let a of actors">
+      <input type="checkbox" [checked]="onSearch(a,movie)" (click)="updateMovieStatus(movie,a,onSearch(a,movie))">{{a.name}}
+</div>
+           
+        </div>
+        </div>
+  </div>
+</div>
+</div>
